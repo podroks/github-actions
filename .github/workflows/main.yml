@@ -23,8 +23,10 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Setup
-        run: echo "${{ github.event.inputs.environment }} and ${{ github.ref }}"
+      - name: Logs
+        run: |
+          echo "Input environment : ${{ github.event.inputs.environment }}",
+          echo "Git branch : ${{ github.ref }}".
 
 # --- Staging canary --- #
 
