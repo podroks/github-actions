@@ -13,24 +13,11 @@ on:
           - prod-canary
         required: true
         default: staging
-#      staging:
-#        description: "Deploy to staging"
-#        type: boolean
-#        required: true
-#      staging_canary:
-#        description: "Deploy to staging-canary"
-#        type: boolean
-#        required: true
-#      prod:
-#        description: "Deploy to prod"
-#        type: boolean
-#        required: true
-#      prod_canary:
-#        description: "Deploy to prod-canary"
-#        type: boolean
-#        required: true
 
 jobs:
+
+# --- Some logs --- #
+
   log:
     name: Logs inputs
     runs-on: ubuntu-latest
@@ -44,7 +31,7 @@ jobs:
   environment_staging:
     if: github.event.inputs.environment == 'staging'
     name: 'Environment staging'
-    runs-on: [self-hosted]
+    runs-on: ubuntu-latest
 
     steps:
       - name: "Checkout to the code" 
