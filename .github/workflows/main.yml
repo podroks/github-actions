@@ -13,6 +13,14 @@ on:
         default: A
 
 jobs:
+  log:
+    name: Logs inputs
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Setup
+        run: echo "${{ github.event.inputs.setup }}"
+
   setup_a:
     if: ${{ github.event.inputs.setup }} === 'A'
     name: 'Setup A'
