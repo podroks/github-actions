@@ -22,7 +22,7 @@ jobs:
         run: echo "${{ github.event.inputs.setup }}"
 
   setup_a:
-    if: ${{ github.event.inputs.setup }} == 'A'
+    if: github.event.inputs.setup == 'A'
     name: 'Setup A'
     runs-on: ubuntu-latest
 
@@ -34,7 +34,7 @@ jobs:
         run: ./setup_a.sh
 
   setup_b:
-    if: ${{ github.event.inputs.setup }} == 'B'
+    if: github.event.inputs.setup == 'B'
     name: 'Setup B'
     runs-on: ubuntu-latest
 
