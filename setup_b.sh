@@ -1,0 +1,1 @@
+echo "Le setup B est sélectionné"
