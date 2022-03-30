@@ -70,7 +70,7 @@ jobs:
 # --- Prod --- #
 
   environment_prod:
-    if: github.event.inputs.environment == 'prod' && github.ref == 'master'
+    if: github.event.inputs.environment == 'prod' && contains(github.ref, 'master')
     name: 'Environment prod'
     runs-on: ubuntu-latest
 
