@@ -19,7 +19,7 @@ jobs:
 # --- Some logs --- #
 
   log:
-    name: Logs inputs
+    name: Logs inputs ${{ github.ref }}
     runs-on: ubuntu-latest
     
     steps:
