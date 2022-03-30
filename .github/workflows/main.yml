@@ -11,6 +11,14 @@ on:
           - B
         required: true
         default: A
+      prod:
+        description: "Deploy to prod"
+        type: boolean
+        required: true
+      environment:
+        description: 'Environment to run tests against'
+        type: environment
+        required: true 
 
 jobs:
   log:
@@ -20,6 +28,10 @@ jobs:
     steps:
       - name: Setup
         run: echo "${{ github.event.inputs.setup }}"
+      - name: Prod
+        run: echo "${{ github.event.inputs.prod }}"
+      - name: Setup
+        run: echo "${{ github.event.inputs.environment }}"
 
   setup_a:
     if: github.event.inputs.setup == 'A'
