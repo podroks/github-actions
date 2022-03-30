@@ -1,6 +1,6 @@
-module.exports = async ({ github, core }) => {
+module.exports = async ({ github, branch, core }) => {
     console.log(Object.keys(github));
-    if (!github.ref.includes("master")) {
+    if (!branch || !branch.includes("master")) {
       console.log("Attend, mais tu n'est pas sur master ! Pas contant");
   
       core.setFailed(error.message);
