@@ -1,0 +1,38 @@
+name: Manual CI
+
+on:
+  workflow_dispatch:
+    inputs:
+      setup:
+        description: "Choose setup"
+        type: choice
+        options:
+          - A
+          - B
+        required: true
+        default: A
+
+jobs:
+  setup_a:
+    if: ${{ github.event.inputs.setup }} === 'A'
+    name: 'Setup A'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Checkout to the code" 
+        uses: actions/checkout@v3
+
+      - name: Launch setup
+        run: ./setup_a.sh
+
+  setup_b:
+    if: ${{ github.event.inputs.setup }} === 'B'
+    name: 'Setup B'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Checkout to the code" 
+        uses: actions/checkout@v3
+
+      - name: Launch setup
+        run: ./setup_b.sh
