@@ -32,6 +32,7 @@ jobs:
 
   environment_staging:
     if: github.event.inputs.environment == 'staging'
+    needs: [log]
     name: 'Environment staging'
     runs-on: ubuntu-latest
 
@@ -50,6 +51,7 @@ jobs:
 
   environment_staging_canary:
     if: github.event.inputs.environment == 'staging-canary'
+    needs: [log]
     name: 'Environment staging-canary'
     runs-on: ubuntu-latest
 
@@ -68,6 +70,7 @@ jobs:
 
   environment_prod:
     if: github.event.inputs.environment == 'prod'
+    needs: [log]
     name: 'Environment prod'
     runs-on: ubuntu-latest
 
@@ -86,6 +89,7 @@ jobs:
 
   environment_prod_canary:
     if: github.event.inputs.environment == 'prod-canary'
+    needs: [log]
     name: 'Environment prod-canary'
     runs-on: ubuntu-latest
 
