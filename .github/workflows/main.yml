@@ -11,7 +11,7 @@ on:
           - B
         required: true
         default: A
-      prod:
+      prode:
         description: "Deploy to prod"
         type: boolean
         required: true
