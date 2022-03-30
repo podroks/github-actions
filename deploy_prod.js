@@ -1,11 +1,8 @@
-module.exports = async ({ github, branch, context, core }) => {
-    console.log(Object.keys(github));
-    console.log(Object.keys(context));
-    console.log(branch);
-    if (!branch || !branch.includes("master")) {
+module.exports = async ({ github, context, core }) => {
+    if (!context.ref.includes("master")) {
       console.log("Attend, mais tu n'est pas sur master ! Pas contant");
   
-      core.setFailed(error.message);
+      core.setFailed("Une mise en prode se fait qu'a partir de master !");
     }
     console.log("Wow c'est partie en prod !");
   };
