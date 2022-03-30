@@ -44,14 +44,18 @@ jobs:
   environment_staging:
     if: github.event.inputs.environment == 'staging'
     name: 'Environment staging'
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted]
 
     steps:
       - name: "Checkout to the code" 
         uses: actions/checkout@v3
 
-      - name: Launch setup
-        run: ./deploy_staging.js
+      - name: Launch deployment script
+        uses: actions/github-script@v6.0.0
+        with:
+          script: |
+            const script = require('./deploy_staging.js')
+            await script({github, context, core})
         
 # --- Staging canary --- #
 
@@ -64,8 +68,12 @@ jobs:
       - name: "Checkout to the code" 
         uses: actions/checkout@v3
 
-      - name: Launch setup
-        run: ./deploy_staging-canary.js
+      - name: Launch deployment script
+        uses: actions/github-script@v6.0.0
+        with:
+          script: |
+            const script = require('./deploy_staging-canary.js')
+            await script({github, context, core})
         
 # --- Prod --- #
 
@@ -78,8 +86,12 @@ jobs:
       - name: "Checkout to the code" 
         uses: actions/checkout@v3
 
-      - name: Launch setup
-        run: ./deploy_prod.js
+      - name: Launch deployment script
+        uses: actions/github-script@v6.0.0
+        with:
+          script: |
+            const script = require('./deploy_prod.js')
+            await script({github, context, core})
         
 # --- Prod canary --- #
 
@@ -92,5 +104,9 @@ jobs:
       - name: "Checkout to the code" 
         uses: actions/checkout@v3
 
-      - name: Launch setup
-        run: ./deploy_prod-canary.js
+      - name: Launch deployment script
+        uses: actions/github-script@v6.0.0
+        with:
+          script: |
+            const script = require('./deploy_prod-canary.js')
+            await script({github, context, core})
