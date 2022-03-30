@@ -78,7 +78,7 @@ jobs:
         with:
           script: |
             const script = require('./deploy_prod.js')
-            await script({github, branch: github.ref, context, core})
+            await script({github, context, core})
         
 # --- Prod canary --- #
 
