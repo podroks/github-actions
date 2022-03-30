@@ -1,5 +1,5 @@
 module.exports = async ({ github, core }) => {
-    console.log(github.ref);
+    console.log(Object.keys(github));
     if (!github.ref.includes("master")) {
       console.log("Attend, mais tu n'est pas sur master ! Pas contant");
   
