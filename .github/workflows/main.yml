@@ -11,8 +11,8 @@ on:
           - B
         required: true
         default: A
-      prode:
-        description: "Deploy to prod"
+      toto:
+        description: "Deploy to "
         type: boolean
         required: true
       environment:
