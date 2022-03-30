@@ -3,8 +3,8 @@ name: Manual CI
 on:
   workflow_dispatch:
     inputs:
-      setup:
-        description: "Choose setup"
+      environment:
+        description: "Choose environment"
         type: choice
         options:
           - staging
@@ -13,22 +13,22 @@ on:
           - prod-canary
         required: true
         default: staging
-      staging:
-        description: "Deploy to staging"
-        type: boolean
-        required: true
-      staging_canary:
-        description: "Deploy to staging-canary"
-        type: boolean
-        required: true
-      prod:
-        description: "Deploy to prod"
-        type: boolean
-        required: true
-      prod_canary:
-        description: "Deploy to prod-canary"
-        type: boolean
-        required: true
+#      staging:
+#        description: "Deploy to staging"
+#        type: boolean
+#        required: true
+#      staging_canary:
+#        description: "Deploy to staging-canary"
+#        type: boolean
+#        required: true
+#      prod:
+#        description: "Deploy to prod"
+#        type: boolean
+#        required: true
+#      prod_canary:
+#        description: "Deploy to prod-canary"
+#        type: boolean
+#        required: true
 
 jobs:
   log:
@@ -37,19 +37,13 @@ jobs:
     
     steps:
       - name: Setup
-        run: echo "${{ github.event.inputs.setup }}"
-      - name: Staging
-        run: echo "${{ github.event.inputs.staging }}"
-      - name: Staging-canary
-        run: echo "${{ github.event.inputs.staging_canary }}"
-      - name: Prod
-        run: echo "${{ github.event.inputs.prod }}"
-      - name: Prod-canary
-        run: echo "${{ github.event.inputs.prod_canary }}"
+        run: echo "${{ github.event.inputs.environment }} and ${{ github.ref }}"
 
-  setup_a:
-    if: github.event.inputs.setup == 'A'
-    name: 'Setup A'
+# --- Staging canary --- #
+
+  environment_staging:
+    if: github.event.inputs.environment == 'staging'
+    name: 'Environment staging'
     runs-on: ubuntu-latest
 
     steps:
@@ -58,10 +52,40 @@ jobs:
 
       - name: Launch setup
         run: ./setup_a.sh
+        
+# --- Staging canary --- #
 
-  setup_b:
-    if: github.event.inputs.setup == 'B'
-    name: 'Setup B'
+  environment_staging_canary:
+    if: github.event.inputs.environment == 'staging-canary'
+    name: 'Environment staging-canary'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Checkout to the code" 
+        uses: actions/checkout@v3
+
+      - name: Launch setup
+        run: ./setup_a.sh
+        
+# --- Prod --- #
+
+  environment_prod:
+    if: github.event.inputs.environment == 'prod' && github.ref == 'master'
+    name: 'Environment prod'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Checkout to the code" 
+        uses: actions/checkout@v3
+
+      - name: Launch setup
+        run: ./setup_b.sh
+        
+# --- Prod --- #
+
+  environment_prod_canary:
+    if: github.event.inputs.environment == 'prod-canary'
+    name: 'Environment prod-canary'
     runs-on: ubuntu-latest
 
     steps:
