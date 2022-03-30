@@ -51,7 +51,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Launch setup
-        run: ./deploy_staging.sh
+        run: ./deploy_staging.js
         
 # --- Staging canary --- #
 
@@ -65,7 +65,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Launch setup
-        run: ./deploy_staging-canary.sh
+        run: ./deploy_staging-canary.js
         
 # --- Prod --- #
 
@@ -79,7 +79,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Launch setup
-        run: ./deploy_prod.sh
+        run: ./deploy_prod.js
         
 # --- Prod canary --- #
 
@@ -93,4 +93,4 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Launch setup
-        run: ./deploy_prod-canary.sh
+        run: ./deploy_prod-canary.js
